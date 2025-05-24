@@ -52,4 +52,8 @@ public class NhanVienLeTan {
 
     @OneToMany(mappedBy = "nhanVienLeTan")
     private List<HoaDon> hoaDons;
+
+    public void setId(Integer id) {
+        this.maNhanVien = id;
+    }
 } 

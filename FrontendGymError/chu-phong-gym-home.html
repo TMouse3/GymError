@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chủ phòng Gym</title>
+    <title>Chủ phòng Gym - Trang chủ</title>
+    <link rel="stylesheet" href="css/chu-phong-gym-home.css">
 </head>
 <body>
-    <h1>Hello Chủ phòng Gym</h1>
+<div class="container">
+    <div class="sidebar">
+        <div class="logo">GYM ERROR</div>
+        <div class="owner-name">Chủ phòng gym: <span id="ownerName">Admin</span></div>
+        <ul class="menu">
+            <li onclick="showNhanVien()">Quản lý nhân viên lễ tân</li>
+            <li onclick="showPT()">Quản lý PT</li>
+            <li onclick="showGoiTap()">Quản lý gói tập</li>
+            <li onclick="showHoaDon()">Quản lý hóa đơn</li>
+            <li onclick="showThongKe()">Thống kê tổng quan</li>
+        </ul>
+    </div>
+    <div class="main-content" id="main-content">
+        <h2>Chào mừng bạn đến với hệ thống quản lý phòng gym!</h2>
+        <p>Chọn chức năng ở menu bên trái để bắt đầu.</p>
+    </div>
+</div>
+<script src="js/chu-phong-gym-home.js" type="module"></script>
 </body>
 </html>

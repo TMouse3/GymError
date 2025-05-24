@@ -72,3 +72,5 @@ document.addEventListener('DOMContentLoaded', function() {
 function showLogin() {
     window.location.href = 'index.html';
 }
+
+window.showLogin = showLogin;
