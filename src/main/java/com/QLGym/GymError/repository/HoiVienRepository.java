@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface HoiVienRepository extends JpaRepository<HoiVien, Integer> {
     Optional<HoiVien> findByTaiKhoanAndMatKhau(String taiKhoan, String matKhau);
     Optional<HoiVien> findByTaiKhoan(String taiKhoan);
+    Optional<HoiVien> findByEmail(String email);
+    Optional<HoiVien> findByCccd(String cccd);
 } 

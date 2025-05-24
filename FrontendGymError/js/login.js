@@ -42,6 +42,6 @@ function login() {
 }
 
 function showRegister() {
-    alert('Chuyển sang trang đăng ký hội viên!');
-    // window.location.href = '/register.html';
+    // alert('Chuyển sang trang đăng ký hội viên!');
+    window.location.href = 'register.html';
 } 

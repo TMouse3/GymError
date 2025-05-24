@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký hội viên - GymError</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="logo-box">
+            <div class="logo-img-bg">
+                <img src="assets/logo.png" alt="logo" class="logo-img">
+            </div>
+            <div class="logo-title">GymError</div>
+        </div>
+        <div class="register-box">
+            <h2>Đăng ký hội viên</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="hoTen">Họ và tên:</label>
+                    <input type="text" id="hoTen" name="hoTen" required>
+                </div>
+                <div class="form-group">
+                    <label for="ngaySinh">Ngày sinh:</label>
+                    <input type="date" id="ngaySinh" name="ngaySinh" required>
+                </div>
+                <div class="form-group">
+                    <label for="gioiTinh">Giới tính:</label>
+                    <select id="gioiTinh" name="gioiTinh" required>
+                        <option value="">Chọn giới tính</option>
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sdt">Số điện thoại:</label>
+                    <input type="tel" id="sdt" name="sdt" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="cccd">CCCD:</label>
+                    <input type="text" id="cccd" name="cccd" required>
+                </div>
+                <div class="form-group">
+                    <label for="taiKhoan">Tên đăng nhập:</label>
+                    <input type="text" id="taiKhoan" name="taiKhoan" required>
+                </div>
+                <div class="form-group">
+                    <label for="matKhau">Mật khẩu:</label>
+                    <input type="password" id="matKhau" name="matKhau" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit">Đăng ký</button>
+                <div class="login-link">
+                    <a href="index.html">Đã có tài khoản? Đăng nhập</a>
+                </div>
+                <div id="message"></div>
+            </form>
+        </div>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+</html> 
