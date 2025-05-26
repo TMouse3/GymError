@@ -37,22 +37,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<ChuPhongGym> admin = chuPhongGymRepository.findByTaiKhoan(username);
         if (admin.isPresent()) {
-            return new User(admin.get().getTaiKhoan(), admin.get().getMatKhau(), new ArrayList<>()); // TODO: Add authorities
+            return new User(admin.get().getTaiKhoan(), admin.get().getMatKhau(), new ArrayList<>());
         }
 
         Optional<HoiVien> hoiVien = hoiVienRepository.findByTaiKhoan(username);
         if (hoiVien.isPresent()) {
-            return new User(hoiVien.get().getTaiKhoan(), hoiVien.get().getMatKhau(), new ArrayList<>()); // TODO: Add authorities
+            return new User(hoiVien.get().getTaiKhoan(), hoiVien.get().getMatKhau(), new ArrayList<>());
         }
 
         Optional<NhanVienLeTan> nhanVien = nhanVienLeTanRepository.findByTaiKhoan(username);
         if (nhanVien.isPresent()) {
-            return new User(nhanVien.get().getTaiKhoan(), nhanVien.get().getMatKhau(), new ArrayList<>()); // TODO: Add authorities
+            return new User(nhanVien.get().getTaiKhoan(), nhanVien.get().getMatKhau(), new ArrayList<>());
         }
 
         Optional<PT> pt = ptRepository.findByTaiKhoan(username);
         if (pt.isPresent()) {
-            return new User(pt.get().getTaiKhoan(), pt.get().getMatKhau(), new ArrayList<>()); // TODO: Add authorities
+            return new User(pt.get().getTaiKhoan(), pt.get().getMatKhau(), new ArrayList<>());
         }
 
         throw new UsernameNotFoundException("User not found with username: " + username);

@@ -85,15 +85,14 @@ body, html {
     z-index: 1000;
 }
 .form-container {
-    background: #fff;
-    margin: 40px auto 40px auto;
-    padding: 28px 40px 18px 40px;
-    border-radius: 14px;
-    box-shadow: 0 4px 32px rgba(229,57,53,0.13), 0 1.5px 8px rgba(0,0,0,0.08);
-    max-width: 440px;
-    width: 100%;
-    position: relative;
-    animation: popupIn 0.18s;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
 }
 @keyframes popupIn {
     from { transform: scale(0.92); opacity: 0.5; }
@@ -115,6 +114,7 @@ body, html {
     font-size: 1rem;
     background: #fafafa;
     transition: border 0.15s;
+    box-sizing: border-box;
 }
 .form-container input:focus, .form-container select:focus {
     border: 1.2px solid #e53935;
@@ -124,17 +124,17 @@ body, html {
 .form-container .checkbox-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 13px;
 }
 .form-container .checkbox-row label {
     font-size: 0.98rem;
     margin: 0;
-    width: 100%;
     font-weight: 500;
+    flex-shrink: 0;
+    min-width: 0;
+    margin-right: 8px;
 }
 .form-container .checkbox-row input[type="checkbox"] {
-    margin-left: 0;
     margin-right: 0;
     transform: scale(1.2);
 }
@@ -196,4 +196,31 @@ body, html {
     color: #b71c1c;
     font-size: 1.1rem;
     margin-top: 18px;
+}
+.btn-edit {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-delete {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 4px;
 } 

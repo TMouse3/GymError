@@ -18,6 +18,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.spec.SecretKeySpec;
+import io.jsonwebtoken.io.Decoders;
+
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.Collections;
 
 @Configuration
 public class SecurityConfig {
@@ -55,7 +60,10 @@ public class SecurityConfig {
 
         // Configure OAuth2 Resource Server for JWT validation
         http.oauth2ResourceServer(oauth2 -> oauth2
-            .jwt(jwt -> jwt.decoder(jwtDecoder()))
+            .jwt(jwt -> jwt
+                .decoder(jwtDecoder())
+                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+            )
         );
 
 
@@ -84,10 +92,35 @@ public class SecurityConfig {
     @Bean
     public JwtDecoder jwtDecoder() {
         // Ensure the secret key is sufficient for HS256 (at least 32 bytes or 256 bits)
-        SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+        byte[] keyBytes;
+        try {
+            keyBytes = Decoders.BASE64.decode(secret);
+        } catch (IllegalArgumentException e) {
+            // If not base64, treat as plain string bytes
+            keyBytes = secret.getBytes();
+        }
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "HmacSHA256");
         return NimbusJwtDecoder
                 .withSecretKey(secretKeySpec)
                 .macAlgorithm(MacAlgorithm.HS256)
                 .build();
+    }
+
+    // Configure JwtAuthenticationConverter to extract authorities from the 'role' claim
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(jwt -> {
+            // Extract the 'role' claim, which is a String
+            String role = jwt.getClaimAsString("role");
+            if (role == null) {
+                return Collections.emptyList();
+            }
+            // Convert the role string (e.g., "ROLE_CHUPHONG") into a collection of GrantedAuthority
+            return Collections.singletonList(new SimpleGrantedAuthority(role));
+            // If you had multiple roles in a claim (e.g., as a List<String>), you would process the list here
+            // Example if 'roles' claim was List<String>: jwt.getClaimAsStringList("roles").stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        });
+        return converter;
     }
 } 

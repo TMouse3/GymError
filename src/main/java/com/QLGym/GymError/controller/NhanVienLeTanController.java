@@ -1,11 +1,12 @@
 package com.QLGym.GymError.controller;
 
 import com.QLGym.GymError.entity.NhanVienLeTan;
-import com.QLGym.GymError.repository.NhanVienLeTanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.QLGym.GymError.service.NhanVienLeTanService;
 
 import java.util.List;
 import java.util.Map;
@@ -14,12 +15,12 @@ import java.util.Map;
 @RequestMapping("/api/nhan-vien-le-tan")
 public class NhanVienLeTanController {
     @Autowired
-    private NhanVienLeTanRepository repository;
+    private NhanVienLeTanService nhanVienLeTanService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
         try {
-            List<NhanVienLeTan> nhanVienList = repository.findAll();
+            List<NhanVienLeTan> nhanVienList = nhanVienLeTanService.getAllNhanVienLeTan();
             return ResponseEntity.ok(nhanVienList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -30,7 +31,7 @@ public class NhanVienLeTanController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody NhanVienLeTan nv) {
         try {
-            NhanVienLeTan savedNv = repository.save(nv);
+            NhanVienLeTan savedNv = nhanVienLeTanService.createNhanVienLeTan(nv);
             return ResponseEntity.ok(savedNv);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -41,13 +42,13 @@ public class NhanVienLeTanController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody NhanVienLeTan nv) {
         try {
-            if (!repository.existsById(id)) {
+            NhanVienLeTan updatedNv = nhanVienLeTanService.updateNhanVienLeTan(id, nv);
+            if (updatedNv != null) {
+                return ResponseEntity.ok(updatedNv);
+            } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "Không tìm thấy nhân viên với ID: " + id));
             }
-            nv.setMaNhanVien(id); // Sử dụng setMaNhanVien thay vì setId
-            NhanVienLeTan updatedNv = repository.save(nv);
-            return ResponseEntity.ok(updatedNv);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "Lỗi khi cập nhật nhân viên: " + e.getMessage()));
@@ -57,11 +58,7 @@ public class NhanVienLeTanController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            if (!repository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("message", "Không tìm thấy nhân viên với ID: " + id));
-            }
-            repository.deleteById(id);
+            nhanVienLeTanService.deleteNhanVienLeTan(id);
             return ResponseEntity.ok(Map.of("message", "Xóa nhân viên thành công"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

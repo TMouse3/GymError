@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class HoiVienServiceImpl implements HoiVienService {
@@ -59,5 +60,10 @@ public class HoiVienServiceImpl implements HoiVienService {
         hoiVien.setMatKhau(passwordEncoder.encode(request.getMatKhau()));
         hoiVienRepository.save(hoiVien);
         return new RegisterResponse(true, "Đăng ký thành công!");
+    }
+
+    @Override
+    public List<HoiVien> getAllHoiVien() {
+        return hoiVienRepository.findAll();
     }
 } 
