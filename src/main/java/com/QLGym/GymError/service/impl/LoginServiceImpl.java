@@ -47,6 +47,7 @@ public class LoginServiceImpl implements LoginService {
         String authenticatedRole = null;
         String hoTen = null;
         String returnedUsername = null;
+        Integer maNhanVien = null;
 
         switch (role.toUpperCase()) {
             case "CHUPHONG":
@@ -70,6 +71,7 @@ public class LoginServiceImpl implements LoginService {
                     authenticatedRole = "NHANVIEN";
                     returnedUsername = nhanVienLeTan.get().getTaiKhoan();
                     hoTen = nhanVienLeTan.get().getHoTen();
+                    maNhanVien = nhanVienLeTan.get().getMaNhanVien();
                 }
                 break;
             case "HOIVIEN":
@@ -90,6 +92,6 @@ public class LoginServiceImpl implements LoginService {
 
         String roleWithPrefix = "ROLE_" + authenticatedRole.toUpperCase();
         String token = jwtUtil.generateToken(username, roleWithPrefix);
-        return new LoginResponse(token, authenticatedRole, returnedUsername, hoTen);
+        return new LoginResponse(token, authenticatedRole, returnedUsername, hoTen, maNhanVien);
     }
 } 

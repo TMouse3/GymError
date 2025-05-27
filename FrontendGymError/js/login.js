@@ -32,7 +32,11 @@ function login() {
 
             // Lưu thông tin người dùng (bao gồm tên nếu có)
             if (data.role === "NHANVIEN" && data.hoTen) {
-                 localStorage.setItem('user', JSON.stringify({ hoTen: data.hoTen, role: data.role }));
+                 localStorage.setItem('user', JSON.stringify({ 
+                     hoTen: data.hoTen, 
+                     role: data.role,
+                     maNhanVien: data.maNhanVien 
+                 }));
             } else { // Lưu thông tin cơ bản cho các vai trò khác
                  localStorage.setItem('user', JSON.stringify({ role: data.role }));
             }

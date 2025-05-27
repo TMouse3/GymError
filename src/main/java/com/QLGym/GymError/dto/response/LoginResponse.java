@@ -12,4 +12,5 @@ public class LoginResponse {
     private String role;
     private String username;
     private String hoTen;
+    private Integer maNhanVien;
 } 

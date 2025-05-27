@@ -197,8 +197,8 @@ async function loadMembersForCheckinDropdown() {
 
         members.forEach(member => {
             const option = document.createElement('option');
-            option.value = member.maHoiVien; // Use member ID as value
-            option.textContent = `${member.hoTen} (ID: ${member.maHoiVien})`; // Display name and ID
+            option.value = member.maHoiVien; // Keep maHoiVien as value for backend
+            option.textContent = `${member.hoTen} (CCCD: ${member.cccd})`; // Show CCCD instead of ID
             selectElement.appendChild(option);
         });
 
@@ -222,7 +222,8 @@ async function processSelectedMemberCheckin() {
     const BuoiCheckInElement = document.getElementById('BuoiCheckIn');
     const checkinResultDiv = document.getElementById('checkin-result');
     const maHoiVien = memberSelectElement.value;
-    const maNhanVienLeTan = localStorage.getItem('maNhanVien'); // Get employee ID
+    const user = JSON.parse(localStorage.getItem('user'));
+    const maNhanVienLeTan = user ? user.maNhanVien : null;
     const BuoiCheckIn = BuoiCheckInElement ? BuoiCheckInElement.value : null; // Get the value
 
     // Clear previous results
@@ -581,7 +582,8 @@ async function handleSessionInvoiceFormSubmit(event) {
     const invoiceData = Object.fromEntries(formData.entries());
 
     const token = getToken();
-    const maNhanVienLeTan = localStorage.getItem('maNhanVien'); // Get employee ID
+    const user = JSON.parse(localStorage.getItem('user'));
+    const maNhanVienLeTan = user ? user.maNhanVien : null;
 
     if (!maNhanVienLeTan) {
         alert('Không tìm thấy thông tin nhân viên đăng nhập.');
@@ -659,7 +661,9 @@ async function showPackageInvoiceForm() {
      const packageOptions = packages.map(pkg => `<option value="${pkg.maGoiTap}">${pkg.tenGoiTap} - ${pkg.giaGoiTap.toLocaleString('vi-VN')}đ</option>`).join(''); // Use giaGoiTap
 
     // Create member options for the dropdown
-    const memberOptions = members.map(member => `<option value="${member.maHoiVien}">${member.hoTen} (ID: ${member.maHoiVien})</option>`).join('');
+    const memberOptions = members.map(member => 
+        `<option value="${member.maHoiVien}">${member.hoTen} (CCCD: ${member.cccd})</option>`
+    ).join('');
 
      const popup = document.getElementById('invoice-form-popup');
     popup.style.display = 'block';
@@ -699,7 +703,8 @@ async function handlePackageInvoiceFormSubmit(event) {
     const invoiceData = Object.fromEntries(formData.entries());
 
     const token = getToken();
-    const maNhanVienLeTan = localStorage.getItem('maNhanVien'); // Get employee ID
+    const user = JSON.parse(localStorage.getItem('user'));
+    const maNhanVienLeTan = user ? user.maNhanVien : null;
 
     if (!maNhanVienLeTan) {
         alert('Không tìm thấy thông tin nhân viên đăng nhập.');
