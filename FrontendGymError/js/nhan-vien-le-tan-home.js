@@ -126,11 +126,11 @@ function displayCheckins(checkins) {
 
     checkins.forEach(checkin => {
         const row = document.createElement('tr');
-        // Use fields from CheckInHistoryDto
+        // Hiển thị hội viên kèm chữ 'CCCD: ' nếu có
         row.innerHTML = `
-            <td>${checkin.hoTenHoiVien || ''}${checkin.cccdHoiVien ? ' (' + checkin.cccdHoiVien + ')' : ''}</td>
+            <td>${checkin.checkInTime ? new Date(checkin.checkInTime).toLocaleDateString() : ''}</td>
             <td>${checkin.buoiCheckIn || ''}</td>
-            <td>${checkin.checkInTime ? new Date(checkin.checkInTime).toLocaleString() : ''}</td> // Format date
+            <td>${checkin.hoTenHoiVien || ''}${checkin.cccdHoiVien ? ' (CCCD: ' + checkin.cccdHoiVien + ')' : ''}</td>
             <td>${checkin.hoTenNhanVien || ''}</td>
         `;
         tableBody.appendChild(row);
@@ -252,7 +252,7 @@ async function processSelectedMemberCheckin() {
             body: JSON.stringify({ 
                 maHoiVien: parseInt(maHoiVien), 
                 maNhanVienLeTan: parseInt(maNhanVienLeTan),
-                BuoiCheckIn: BuoiCheckIn // Include the new field
+                buoiCheckIn: BuoiCheckIn // Sửa key về đúng chuẩn backend
             })
         });
 
@@ -790,9 +790,7 @@ document.querySelectorAll('.menu li').forEach(item => {
 // Initial setup when script is executed (DOM is ready because script is at the end of body)
 // Display user info (if available)
 const userInfo = document.getElementById('user-info');
-console.log('User info element:', userInfo);
 const user = JSON.parse(localStorage.getItem('user'));
-console.log('User data from localStorage:', user);
 if (user && user.hoTen) {
     userInfo.innerHTML = `Nhân viên lễ tân: <br> ${user.hoTen}`;
 } else {
@@ -813,7 +811,6 @@ mainContentArea.innerHTML = `
 
 // Handle logout
 const logoutLink = document.getElementById('logout-link');
-console.log('Logout link element:', logoutLink);
 if (logoutLink) {
     console.log('Adding click listener to logout link');
     logoutLink.addEventListener('click', (e) => {

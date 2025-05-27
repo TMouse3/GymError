@@ -118,6 +118,7 @@ public class CheckInServiceImpl implements CheckInService {
         dto.setCheckInTime(checkIn.getNgayCheckIn());
         dto.setBuoiCheckIn(checkIn.getBuoiCheckIn());
         dto.setHoTenHoiVien(checkIn.getHoiVien() != null ? checkIn.getHoiVien().getHoTen() : "N/A");
+        dto.setCccdHoiVien(checkIn.getHoiVien() != null ? checkIn.getHoiVien().getCccd() : null);
         dto.setHoTenNhanVien(checkIn.getNhanVienLeTan() != null ? checkIn.getNhanVienLeTan().getHoTen() : "N/A");
         return dto;
     }

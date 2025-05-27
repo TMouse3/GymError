@@ -1,22 +1,27 @@
 package com.QLGym.GymError.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 
 @Entity
 @Table(name = "CheckIn")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class CheckIn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaCheckIn")
+    @EqualsAndHashCode.Include
     private Integer maCheckIn;
 
     @Column(name = "NgayCheckIn")
@@ -34,4 +39,4 @@ public class CheckIn {
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")
     private NhanVienLeTan nhanVienLeTan;
-} 
+}

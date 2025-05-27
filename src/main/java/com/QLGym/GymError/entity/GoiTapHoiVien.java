@@ -2,18 +2,23 @@ package com.QLGym.GymError.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "GoiTapHoiVien")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class GoiTapHoiVien {
+    @EqualsAndHashCode.Include
     @EmbeddedId
     private GoiTapHoiVienId id;
 
@@ -35,4 +40,4 @@ public class GoiTapHoiVien {
     @Column(name = "NgayKetThuc")
     @Temporal(TemporalType.DATE)
     private Date ngayKetThuc;
-} 
+}

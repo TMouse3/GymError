@@ -2,8 +2,10 @@ package com.QLGym.GymError.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -11,10 +13,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "BuoiTap")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class BuoiTap {
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaBuoiTap")
@@ -41,4 +46,4 @@ public class BuoiTap {
 
     @OneToMany(mappedBy = "buoiTap")
     private List<BaiTapBuoiTap> baiTapBuoiTaps;
-} 
+}

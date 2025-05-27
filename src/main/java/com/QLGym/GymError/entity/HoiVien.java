@@ -1,9 +1,11 @@
 package com.QLGym.GymError.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
@@ -11,13 +13,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "HoiVien")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class HoiVien {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaHoiVien")
+    @EqualsAndHashCode.Include
     private Integer maHoiVien;
 
     @Column(name = "HoTen", length = 50)
@@ -60,4 +65,4 @@ public class HoiVien {
     @OneToMany(mappedBy = "hoiVien")
     @JsonManagedReference
     private List<HoaDon> hoaDons;
-} 
+}
