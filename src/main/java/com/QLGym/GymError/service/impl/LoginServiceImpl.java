@@ -45,30 +45,39 @@ public class LoginServiceImpl implements LoginService {
         String password = loginRequest.getPassword();
         String role = loginRequest.getRole();
         String authenticatedRole = null;
+        String hoTen = null;
+        String returnedUsername = null;
 
         switch (role.toUpperCase()) {
             case "CHUPHONG":
                 Optional<ChuPhongGym> chuPhongGym = chuPhongGymRepository.findByTaiKhoan(username);
                 if (chuPhongGym.isPresent() && passwordEncoder.matches(password, chuPhongGym.get().getMatKhau())) {
                     authenticatedRole = "CHUPHONG";
+                    returnedUsername = chuPhongGym.get().getTaiKhoan();
                 }
                 break;
             case "PT":
                 Optional<PT> pt = ptRepository.findByTaiKhoan(username);
                 if (pt.isPresent() && passwordEncoder.matches(password, pt.get().getMatKhau())) {
                     authenticatedRole = "PT";
+                    returnedUsername = pt.get().getTaiKhoan();
+                    hoTen = pt.get().getHoTen();
                 }
                 break;
             case "NHANVIEN":
                 Optional<NhanVienLeTan> nhanVienLeTan = nhanVienLeTanRepository.findByTaiKhoan(username);
                 if (nhanVienLeTan.isPresent() && passwordEncoder.matches(password, nhanVienLeTan.get().getMatKhau())) {
                     authenticatedRole = "NHANVIEN";
+                    returnedUsername = nhanVienLeTan.get().getTaiKhoan();
+                    hoTen = nhanVienLeTan.get().getHoTen();
                 }
                 break;
             case "HOIVIEN":
                 Optional<HoiVien> hoiVien = hoiVienRepository.findByTaiKhoan(username);
                 if (hoiVien.isPresent() && passwordEncoder.matches(password, hoiVien.get().getMatKhau())) {
                     authenticatedRole = "HOIVIEN";
+                    returnedUsername = hoiVien.get().getTaiKhoan();
+                    hoTen = hoiVien.get().getHoTen();
                 }
                 break;
             default:
@@ -81,6 +90,6 @@ public class LoginServiceImpl implements LoginService {
 
         String roleWithPrefix = "ROLE_" + authenticatedRole.toUpperCase();
         String token = jwtUtil.generateToken(username, roleWithPrefix);
-        return new LoginResponse(token, authenticatedRole, username);
+        return new LoginResponse(token, authenticatedRole, returnedUsername, hoTen);
     }
 } 

@@ -30,6 +30,13 @@ function login() {
             // Lưu token sử dụng hàm saveToken từ config.js
             saveToken(data.token);
 
+            // Lưu thông tin người dùng (bao gồm tên nếu có)
+            if (data.role === "NHANVIEN" && data.hoTen) {
+                 localStorage.setItem('user', JSON.stringify({ hoTen: data.hoTen, role: data.role }));
+            } else { // Lưu thông tin cơ bản cho các vai trò khác
+                 localStorage.setItem('user', JSON.stringify({ role: data.role }));
+            }
+
             // Chuyển hướng dựa trên vai trò
             if (data.role === "CHUPHONG" || data.role === "ADMIN") {
                 window.location.href = "chu-phong-gym-home.html";

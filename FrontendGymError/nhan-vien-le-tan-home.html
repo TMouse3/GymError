@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nhân viên lễ tân - Trang chủ</title>
+    <title>Nhân viên lễ tân - Gym Error</title>
     <link rel="stylesheet" href="css/nhan-vien-le-tan-home.css">
 </head>
 <body>
-    <h1>Hello nhân viên lễ tân</h1>
-    <script src="js/nhan-vien-le-tan-home.js"></script>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">GYM ERROR</div>
+            <p class="owner-name" id="user-info">Xin chào, Lễ tân</p>
+            <div class="logout">
+                 <a href="#" id="logout-link" class="btn-red">Đăng xuất</a>
+            </div>
+            <ul class="menu">
+                <li data-section="members">Quản lý hội viên</li>
+                <li data-section="invoices">Quản lý hóa đơn</li>
+                <li data-section="checkin">Check-in hội viên</li>
+            </ul>
+        </div>
+        <div class="main-content" id="main-content">
+            <h2>Chào mừng bạn đến với hệ thống quản lý phòng gym!</h2>
+            <p>Các chức năng nằm ở thanh menu bên trái.</p>
+        </div>
+    </div>
+
+    <!-- Form popup structure (simplified - will be managed by JS) -->
+     <div id="form-popup-container"></div>
+
+
+    <script src="js/config.js" type="module"></script>
+    <script src="js/nhan-vien-le-tan-home.js" type="module"></script>
 </body>
 </html>

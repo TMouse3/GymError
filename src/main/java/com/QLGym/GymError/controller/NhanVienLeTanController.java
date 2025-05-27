@@ -1,6 +1,7 @@
 package com.QLGym.GymError.controller;
 
 import com.QLGym.GymError.entity.NhanVienLeTan;
+import com.QLGym.GymError.dto.response.NhanVienLeTanDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class NhanVienLeTanController {
     @GetMapping
     public ResponseEntity<?> getAll() {
         try {
-            List<NhanVienLeTan> nhanVienList = nhanVienLeTanService.getAllNhanVienLeTan();
+            List<NhanVienLeTanDto> nhanVienList = nhanVienLeTanService.getAllNhanVienLeTan();
             return ResponseEntity.ok(nhanVienList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -1,6 +1,7 @@
 package com.QLGym.GymError.service.impl;
 
 import com.QLGym.GymError.entity.NhanVienLeTan;
+import com.QLGym.GymError.dto.response.NhanVienLeTanDto;
 import com.QLGym.GymError.repository.NhanVienLeTanRepository;
 import com.QLGym.GymError.service.NhanVienLeTanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NhanVienLeTanServiceImpl implements NhanVienLeTanService {
@@ -20,13 +22,28 @@ public class NhanVienLeTanServiceImpl implements NhanVienLeTanService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<NhanVienLeTan> getAllNhanVienLeTan() {
-        return nhanVienLeTanRepository.findAll();
+    public List<NhanVienLeTanDto> getAllNhanVienLeTan() {
+        return nhanVienLeTanRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    private NhanVienLeTanDto convertToDto(NhanVienLeTan nhanVien) {
+        NhanVienLeTanDto dto = new NhanVienLeTanDto();
+        dto.setMaNhanVien(nhanVien.getMaNhanVien());
+        dto.setHoTen(nhanVien.getHoTen());
+        dto.setGioiTinh(nhanVien.getGioiTinh());
+        dto.setNgaySinh(nhanVien.getNgaySinh());
+        dto.setSdt(nhanVien.getSdt());
+        dto.setEmail(nhanVien.getEmail());
+        dto.setCccd(nhanVien.getCccd());
+        dto.setTaiKhoan(nhanVien.getTaiKhoan());
+        dto.setTrangThaiLamViec(nhanVien.getTrangThaiLamViec());
+        return dto;
     }
 
     @Override
     public NhanVienLeTan createNhanVienLeTan(NhanVienLeTan nhanVien) {
-        // Encode password before saving
         nhanVien.setMatKhau(passwordEncoder.encode(nhanVien.getMatKhau()));
         return nhanVienLeTanRepository.save(nhanVien);
     }
@@ -44,7 +61,6 @@ public class NhanVienLeTanServiceImpl implements NhanVienLeTanService {
             nhanVien.setCccd(nhanVienDetails.getCccd());
             nhanVien.setTaiKhoan(nhanVienDetails.getTaiKhoan());
             
-            // Only encode and update password if it's provided/changed
             if (nhanVienDetails.getMatKhau() != null && !nhanVienDetails.getMatKhau().isEmpty()) {
                  nhanVien.setMatKhau(passwordEncoder.encode(nhanVienDetails.getMatKhau()));
             }
@@ -52,8 +68,7 @@ public class NhanVienLeTanServiceImpl implements NhanVienLeTanService {
             nhanVien.setTrangThaiLamViec(nhanVienDetails.getTrangThaiLamViec());
             return nhanVienLeTanRepository.save(nhanVien);
         } else {
-            // Handle not found case, perhaps throw an exception
-            return null; // Or throw ResourceNotFoundException
+            return null;
         }
     }
 

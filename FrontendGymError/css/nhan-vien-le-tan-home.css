@@ -36,6 +36,37 @@ body, html {
     margin-bottom: 32px;
     font-weight: bold;
 }
+.logout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+.logout a {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
+    width: 60%;
+    text-align: center;
+}
+.logout a:hover { 
+    background: #b71c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+}
+.logout a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
+}
 .menu {
     list-style: none;
     padding: 0;
@@ -95,19 +126,6 @@ body, html {
     overflow-y: auto;
     max-height: calc(100vh - 80px);
 }
-.form-container .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #e53935;
-    cursor: pointer;
-    border: 1px solid #e53935;
-    border-radius: 4px;
-    padding: 2px 5px;
-    background-color: #fff;
-}
 @keyframes popupIn {
     from { transform: scale(0.92); opacity: 0.5; }
     to { transform: scale(1); opacity: 1; }
@@ -134,13 +152,6 @@ body, html {
     border: 1.2px solid #e53935;
     outline: none;
     background: #fff;
-}
-.form-container label {
-    font-size: 0.98rem;
-    margin-bottom: 5px;
-    font-weight: 500;
-    display: block;
-    box-sizing: border-box;
 }
 .form-container .checkbox-row {
     display: flex;
@@ -196,42 +207,6 @@ body, html {
     transition: background 0.15s;
 }
 .btn-red:hover { background: #b71c1c; }
-
-.logout {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 16px 0;
-}
-
-.logout-btn {
-    background: #e53935;
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
-    width: 60%;
-    text-align: center;
-}
-
-.logout-btn:hover { 
-    background: #b71c1c;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
-}
-
-.logout-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
-}
-
 .table-list {
     width: 100%;
     border-collapse: collapse;
@@ -280,4 +255,50 @@ body, html {
     margin: 2px 1px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.form-container .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #e53935; /* Màu đỏ */
+    cursor: pointer;
+    border: 1px solid #e53935; /* Thêm khung màu đỏ */
+    border-radius: 4px; /* Bo góc nhẹ cho khung */
+    padding: 2px 5px; /* Thêm padding để khung không quá sát vào dấu X */
+    background-color: #fff; /* Nền trắng cho khung */
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="date"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container select,
+.form-container textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* Hide number input arrows (spinners) */
+.form-container input[type="number"]::-webkit-outer-spin-button,
+.form-container input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.form-container input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Add specific styles for textarea if needed, e.g., height */
+.form-container textarea {
+    resize: vertical;
+    min-height: 80px;
 } 

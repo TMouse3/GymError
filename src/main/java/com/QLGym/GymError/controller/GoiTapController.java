@@ -1,7 +1,8 @@
 package com.QLGym.GymError.controller;
 
+import com.QLGym.GymError.dto.GoiTapDto;
 import com.QLGym.GymError.entity.GoiTap;
-import com.QLGym.GymError.repository.GoiTapRepository;
+import com.QLGym.GymError.service.GoiTapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,12 @@ import java.util.Map;
 @RequestMapping("/api/goi-tap")
 public class GoiTapController {
     @Autowired
-    private GoiTapRepository repository;
+    private GoiTapService goiTapService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
         try {
-            List<GoiTap> goiTapList = repository.findAll();
+            List<GoiTapDto> goiTapList = goiTapService.getAllGoiTap();
             return ResponseEntity.ok(goiTapList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -27,10 +28,26 @@ public class GoiTapController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getGoiTapById(@PathVariable Integer id) {
+        try {
+            GoiTapDto goiTap = goiTapService.getGoiTapById(id);
+            if (goiTap == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Map.of("message", "Không tìm thấy gói tập với ID: " + id));
+            }
+            return ResponseEntity.ok(goiTap);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Lỗi khi lấy gói tập theo ID: " + e.getMessage()));
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> create(@RequestBody GoiTap goiTap) {
         try {
-            GoiTap savedGoiTap = repository.save(goiTap);
+            // Assume GoiTap entity is directly used for creation for simplicity
+            GoiTap savedGoiTap = goiTapService.createGoiTap(goiTap);
             return ResponseEntity.ok(savedGoiTap);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -41,12 +58,12 @@ public class GoiTapController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody GoiTap goiTap) {
         try {
-            if (!repository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("message", "Không tìm thấy gói tập với ID: " + id));
-            }
-            goiTap.setMaGoiTap(id);
-            GoiTap updatedGoiTap = repository.save(goiTap);
+            // Assume GoiTap entity is directly used for update for simplicity
+            GoiTap updatedGoiTap = goiTapService.updateGoiTap(id, goiTap);
+             if (updatedGoiTap == null) {
+                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                         .body(Map.of("message", "Không tìm thấy gói tập với ID: " + id));
+             }
             return ResponseEntity.ok(updatedGoiTap);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -57,12 +74,12 @@ public class GoiTapController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            if (!repository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("message", "Không tìm thấy gói tập với ID: " + id));
-            }
-            repository.deleteById(id);
+            goiTapService.deleteGoiTap(id);
             return ResponseEntity.ok(Map.of("message", "Xóa gói tập thành công"));
+        } catch (RuntimeException e) {
+             // Catch the specific RuntimeException from the service if not found
+             return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                     .body(Map.of("message", "Không tìm thấy gói tập với ID: " + id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "Lỗi khi xóa gói tập: " + e.getMessage()));

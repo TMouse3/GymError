@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
 import java.util.List;
@@ -45,14 +46,18 @@ public class HoiVien {
     private String matKhau;
 
     @OneToMany(mappedBy = "hoiVien")
+    @JsonManagedReference
     private List<BuoiTap> buoiTaps;
 
     @OneToMany(mappedBy = "hoiVien")
+    @JsonManagedReference
     private List<CheckIn> checkIns;
 
     @OneToMany(mappedBy = "hoiVien")
+    @JsonManagedReference
     private List<GoiTapHoiVien> goiTapHoiViens;
 
     @OneToMany(mappedBy = "hoiVien")
+    @JsonManagedReference
     private List<HoaDon> hoaDons;
 } 

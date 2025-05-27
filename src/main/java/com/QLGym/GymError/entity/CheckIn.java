@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
 
@@ -27,6 +28,7 @@ public class CheckIn {
 
     @ManyToOne
     @JoinColumn(name = "MaHoiVien")
+    @JsonBackReference
     private HoiVien hoiVien;
 
     @ManyToOne

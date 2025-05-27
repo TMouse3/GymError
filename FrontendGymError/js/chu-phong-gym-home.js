@@ -32,19 +32,36 @@ function showNhanVienForm(nv = null) {
     popup.style.display = 'block';
     popup.innerHTML = `
         <div class="form-container">
+            <span class="close-btn" onclick="closeNhanVienForm()">×</span>
             <h3>${nv ? 'Sửa' : 'Thêm'} nhân viên lễ tân</h3>
             <form id="nvForm">
-                <input name="hoTen" placeholder="Họ tên" value="${nv ? nv.hoTen : ''}" required><br>
-                <select name="gioiTinh">
+                <label for="hoTen">Họ tên:</label>
+                <input name="hoTen" id="hoTen" placeholder="Nhập họ tên" value="${nv ? nv.hoTen : ''}" required><br>
+
+                <label for="gioiTinh">Giới tính:</label>
+                <select name="gioiTinh" id="gioiTinh">
                     <option value="true" ${nv && nv.gioiTinh ? 'selected' : ''}>Nam</option>
                     <option value="false" ${nv && nv.gioiTinh === false ? 'selected' : ''}>Nữ</option>
                 </select><br>
-                <input name="ngaySinh" type="date" value="${nv && nv.ngaySinh ? nv.ngaySinh.substring(0,10) : ''}" required><br>
-                <input name="sdt" placeholder="Số điện thoại" value="${nv ? nv.sdt : ''}" required><br>
-                <input name="email" placeholder="Email" value="${nv ? nv.email : ''}"><br>
-                <input name="cccd" placeholder="CCCD" value="${nv ? nv.cccd : ''}"><br>
-                <input name="taiKhoan" placeholder="Tài khoản" value="${nv ? nv.taiKhoan : ''}" required><br>
-                <input name="matKhau" placeholder="Mật khẩu" type="password" value="${nv ? nv.matKhau : ''}" required><br>
+
+                <label for="ngaySinh">Ngày sinh:</label>
+                <input name="ngaySinh" id="ngaySinh" type="date" value="${nv && nv.ngaySinh ? nv.ngaySinh.substring(0,10) : ''}" required><br>
+
+                <label for="sdt">Số điện thoại:</label>
+                <input name="sdt" id="sdt" placeholder="Số điện thoại" value="${nv ? nv.sdt : ''}" required><br>
+
+                <label for="email">Email:</label>
+                <input name="email" id="email" placeholder="Email" value="${nv ? nv.email : ''}"><br>
+
+                <label for="cccd">CCCD:</label>
+                <input name="cccd" id="cccd" placeholder="CCCD" value="${nv ? nv.cccd : ''}"><br>
+
+                <label for="taiKhoan">Tài khoản:</label>
+                <input name="taiKhoan" id="taiKhoan" placeholder="Tài khoản" value="${nv ? nv.taiKhoan : ''}" required><br>
+
+                <label for="matKhau">Mật khẩu:</label>
+                <input name="matKhau" id="matKhau" placeholder="Mật khẩu" type="password" value="${nv ? nv.matKhau : ''}" required><br>
+
                 <div class='checkbox-row'>
                     <label for='trangThaiLamViec'>Đang làm việc:</label>
                     <input id='trangThaiLamViec' name='trangThaiLamViec' type='checkbox' ${nv && nv.trangThaiLamViec ? 'checked' : ''}>
@@ -190,25 +207,48 @@ function showPTForm(pt = null) {
     popup.style.display = 'block';
     popup.innerHTML = `
         <div class="form-container">
+            <span class="close-btn" onclick="closePTForm()">×</span>
             <h3>${pt ? 'Sửa' : 'Thêm'} PT</h3>
             <form id="ptForm">
-                <input name="hoTen" placeholder="Họ tên" value="${pt ? pt.hoTen : ''}" required><br>
-                <select name="gioiTinh">
+                <label for="hoTen">Họ tên:</label>
+                <input name="hoTen" id="hoTen" placeholder="Nhập họ tên" value="${pt ? pt.hoTen : ''}" required><br>
+
+                <label for="gioiTinh">Giới tính:</label>
+                <select name="gioiTinh" id="gioiTinh">
                     <option value="true" ${pt && pt.gioiTinh ? 'selected' : ''}>Nam</option>
                     <option value="false" ${pt && pt.gioiTinh === false ? 'selected' : ''}>Nữ</option>
                 </select><br>
-                <input name="ngaySinh" type="date" value="${pt && pt.ngaySinh ? pt.ngaySinh.substring(0,10) : ''}" required><br>
-                <input name="sdt" placeholder="Số điện thoại" value="${pt ? pt.sdt : ''}" required><br>
-                <input name="email" placeholder="Email" value="${pt ? pt.email : ''}"><br>
-                <input name="cccd" placeholder="CCCD" value="${pt ? pt.cccd : ''}"><br>
-                <input name="bangCap" placeholder="Bằng cấp" value="${pt ? pt.bangCap : ''}"><br>
-                <input name="kinhNghiem" type="number" placeholder="Kinh nghiệm (năm)" value="${pt ? pt.kinhNghiem : ''}"><br>
-                <select name="trangThai">
+
+                <label for="ngaySinh">Ngày sinh:</label>
+                <input name="ngaySinh" id="ngaySinh" type="date" value="${pt && pt.ngaySinh ? pt.ngaySinh.substring(0,10) : ''}" required><br>
+
+                <label for="sdt">Số điện thoại:</label>
+                <input name="sdt" id="sdt" placeholder="Số điện thoại" value="${pt ? pt.sdt : ''}" required><br>
+
+                <label for="email">Email:</label>
+                <input name="email" id="email" placeholder="Email" value="${pt ? pt.email : ''}"><br>
+
+                <label for="cccd">CCCD:</label>
+                <input name="cccd" id="cccd" placeholder="CCCD" value="${pt ? pt.cccd : ''}"><br>
+
+                <label for="bangCap">Bằng cấp:</label>
+                <input name="bangCap" id="bangCap" placeholder="Bằng cấp" value="${pt ? pt.bangCap : ''}"><br>
+
+                <label for="kinhNghiem">Kinh nghiệm (năm):</label>
+                <input name="kinhNghiem" id="kinhNghiem" type="number" placeholder="Kinh nghiệm (năm)" value="${pt ? pt.kinhNghiem : ''}"><br>
+
+                <label for="trangThai">Trạng thái:</label>
+                <select name="trangThai" id="trangThai">
                     <option value="true" ${pt && pt.trangThai ? 'selected' : ''}>Hoạt động</option>
                     <option value="false" ${pt && pt.trangThai === false ? 'selected' : ''}>Không hoạt động</option>
                 </select><br>
-                <input name="taiKhoan" placeholder="Tài khoản" value="${pt ? pt.taiKhoan : ''}" required><br>
-                <input name="matKhau" placeholder="Mật khẩu" type="password" value="${pt ? pt.matKhau : ''}" required><br>
+
+                <label for="taiKhoan">Tài khoản:</label>
+                <input name="taiKhoan" id="taiKhoan" placeholder="Tài khoản" value="${pt ? pt.taiKhoan : ''}" required><br>
+
+                <label for="matKhau">Mật khẩu:</label>
+                <input name="matKhau" id="matKhau" placeholder="Mật khẩu" type="password" value="${pt ? pt.matKhau : ''}" required><br>
+
                 <div class='checkbox-row'>
                     <label for='trangThaiLamViecPT'>Đang làm việc:</label>
                     <input id='trangThaiLamViecPT' name='trangThaiLamViec' type='checkbox' ${pt && pt.trangThaiLamViec ? 'checked' : ''}>
@@ -354,16 +394,27 @@ function showGoiTapForm(goiTap = null) {
     popup.style.display = 'block';
     popup.innerHTML = `
         <div class="form-container">
+            <span class="close-btn" onclick="closeGoiTapForm()">×</span>
             <h3>${goiTap ? 'Sửa' : 'Thêm'} gói tập</h3>
             <form id="goiTapForm">
-                <input name="tenGoiTap" placeholder="Tên gói tập" value="${goiTap ? goiTap.tenGoiTap : ''}" required><br>
-                <input name="soNgay" type="number" placeholder="Số ngày" value="${goiTap ? goiTap.soNgay : ''}" required><br>
-                <input name="giaGoiTap" type="number" placeholder="Giá" value="${goiTap ? goiTap.giaGoiTap : ''}" required><br>
-                <select name="trangThaiGoiTap">
+                <label for="tenGoiTap">Tên gói tập:</label>
+                <input name="tenGoiTap" id="tenGoiTap" placeholder="Nhập tên gói tập" value="${goiTap ? goiTap.tenGoiTap : ''}" required><br>
+
+                <label for="moTaGoiTap">Mô tả:</label>
+                <input name="moTaGoiTap" id="moTaGoiTap" placeholder="Nhập mô tả" value="${goiTap ? goiTap.moTaGoiTap : ''}"><br>
+
+                <label for="soNgay">Số ngày:</label>
+                <input name="soNgay" id="soNgay" type="number" placeholder="Nhập số ngày" value="${goiTap ? goiTap.soNgay : ''}" required min="1"><br>
+
+                <label for="giaGoiTap">Giá tiền:</label>
+                <input name="giaGoiTap" id="giaGoiTap" type="number" placeholder="Nhập giá tiền" value="${goiTap ? goiTap.giaGoiTap : ''}" required min="0"><br>
+
+                <label for="trangThaiGoiTap">Trạng thái:</label>
+                <select name="trangThaiGoiTap" id="trangThaiGoiTap">
                     <option value="true" ${goiTap && goiTap.trangThaiGoiTap ? 'selected' : ''}>Hoạt động</option>
                     <option value="false" ${goiTap && goiTap.trangThaiGoiTap === false ? 'selected' : ''}>Không hoạt động</option>
                 </select><br>
-                <input name="moTaGoiTap" placeholder="Mô tả" value="${goiTap ? goiTap.moTaGoiTap : ''}"><br>
+
                 <button type="submit" class="btn-red">${goiTap ? 'Lưu' : 'Thêm'}</button>
                 <button type="button" onclick="closeGoiTapForm()">Hủy</button>
             </form>
@@ -374,10 +425,10 @@ function showGoiTapForm(goiTap = null) {
         const form = e.target;
         const data = {
             tenGoiTap: form.tenGoiTap.value,
+            moTaGoiTap: form.moTaGoiTap.value,
             soNgay: parseInt(form.soNgay.value) || 0,
             giaGoiTap: parseFloat(form.giaGoiTap.value) || 0,
-            trangThaiGoiTap: form.trangThaiGoiTap.value === 'true',
-            moTaGoiTap: form.moTaGoiTap.value
+            trangThaiGoiTap: form.trangThaiGoiTap.value === 'true'
         };
         const token = getToken();
 
@@ -509,9 +560,9 @@ async function loadHoaDon() {
             <td>${ngayThanhToan}</td>
             <td>${hoaDon.giaTien || ''}đ</td>
             <td>${hoaDon.ghiChu || ''}</td>
-            <td>${hoaDon.hoiVien ? hoaDon.hoiVien.hoTen : ''}</td>
-            <td>${hoaDon.goiTap ? hoaDon.goiTap.tenGoiTap : ''}</td>
-            <td>${hoaDon.nhanVien ? hoaDon.nhanVien.hoTen : ''}</td>
+            <td>${hoaDon.tenHoiVien || ''}</td>
+            <td>${hoaDon.tenGoiTap || ''}</td>
+            <td>${hoaDon.tenNhanVien || ''}</td>
         </tr>`;
     });
     html += `</table>`;
@@ -562,7 +613,6 @@ async function showThongKe() {
         if (resInvoices.ok) {
             const invoices = await resInvoices.json();
             // Assuming GiaTien is a number (float/double). Summing up.
-            // If only completed invoices are needed, backend might need adjustment or filtering here.
             totalRevenue = invoices.reduce((sum, invoice) => sum + (invoice.giaTien || 0), 0).toLocaleString('vi-VN'); // Format with locale for currency display
         } else {
              console.error('Failed to fetch invoices for stats:', resInvoices.status, await resInvoices.text());
