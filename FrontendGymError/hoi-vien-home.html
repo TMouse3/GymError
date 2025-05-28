@@ -3,11 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hội viên - Trang chủ</title>
+    <title>Trang Chủ Hội Viên - GYM ERROR</title>
     <link rel="stylesheet" href="css/hoi-vien-home.css">
 </head>
 <body>
-    <h1>Hello Hội viên</h1>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">GYM ERROR</div>
+            <p class="owner-name" id="user-info">Hội viên: <span id="member-name">Nguyễn Trung</span></p>
+            <div class="logout">
+                 <a href="#" id="logout-link" class="btn-red">Đăng xuất</a>
+            </div>
+            <ul class="menu">
+                <li data-section="progress">Xem tiến trình tập luyện</li>
+                <li data-section="available-packages">Xem gói tập khả dụng</li>
+                <li data-section="register-package">Đăng ký gói tập mới</li>
+                <li data-section="pt-schedule">Xem lịch tập đăng ký với PT</li>
+                <li data-section="personal-info">Thông tin cá nhân</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="welcome-block">
+                <h1>Chào mừng bạn đến với hệ thống quản lý phòng gym!</h1>
+                <p>Sử dụng thanh menu bên trái để truy cập các chức năng dành cho hội viên.</p>
+            </div>
+
+            <!-- Sample Data Block - Xem tiến trình tập luyện -->
+            <div id="progress" class="sample-data-block">
+                <h3>Tiến trình tập luyện</h3>
+                <p>Biểu đồ/bảng thể hiện sự thay đổi cân nặng, số đo, thành tích bài tập, v.v. (Chưa triển khai).</p>
+                <p>Ngày cập nhật gần nhất: DD/MM/YYYY</p>
+            </div>
+
+            <!-- Sample Data Block - Xem gói tập khả dụng -->
+            <div id="available-packages" class="sample-data-block">
+                 <h3>Gói tập khả dụng</h3>
+                 <ul>
+                     <li>Gói Cơ Bản - 3 Tháng - Giá: XXXX VND</li>
+                     <li>Gói Nâng Cao - 6 Tháng - Giá: YYYY VND</li>
+                     <li>Gói VIP - 12 Tháng - Giá: ZZZZ VND</li>
+                 </ul>
+                 <p>Click vào gói tập để xem chi tiết và gia hạn/đăng ký mới (Chưa triển khai).</p>
+             </div>
+
+             <!-- Sample Data Block - Đăng ký gói tập mới -->
+             <div id="register-package" class="sample-data-block">
+                 <h3>Đăng ký gói tập mới</h3>
+                 <p>Form/Danh sách các gói tập để chọn và tiến hành thanh toán (Chưa triển khai).</p>
+                 <p>Liên kết đến Thanh toán trực tuyến (Chưa triển khai).</p>
+             </div>
+
+             <!-- Sample Data Block - Xem lịch tập đăng ký với PT -->
+             <div id="pt-schedule" class="sample-data-block">
+                 <h3>Lịch tập đăng ký với PT</h3>
+                 <ul>
+                     <li>Buổi tập với PT Tên PT - Ngày DD/MM/YYYY, HH:MM</li>
+                     <li>Buổi tập với PT Tên PT - Ngày DD/MM/YYYY, HH:MM</li>
+                 </ul>
+                 <p>Click vào buổi tập để xem chi tiết hoặc đăng ký lịch tập mới với PT (Chưa triển khai).</p>
+             </div>
+
+            <!-- Sample Data Block - Thông tin cá nhân -->
+            <div id="personal-info" class="sample-data-block">
+                <h3>Thông tin cá nhân</h3>
+                <p>Họ Tên: Nguyễn Văn A</p>
+                <p>CCCD: 123456789012</p>
+                <p>Ngày sinh: 01/01/2000</p>
+                <p>Địa chỉ: Số 1 Đường ABC, Quận XYZ</p>
+            </div>
+
+        </div>
+    </div>
     <script src="js/hoi-vien-home.js"></script>
 </body>
 </html>

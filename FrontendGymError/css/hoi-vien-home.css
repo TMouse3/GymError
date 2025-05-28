@@ -1,0 +1,140 @@
+/* styles for hoi-vien-home.html */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fafafa;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #fff;
+    border-right: 3px solid #e53935;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 0 0;
+    box-shadow: 2px 0 8px rgba(229,57,53,0.04);
+}
+
+.logo {
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: #e53935;
+    margin-bottom: 18px;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 8px rgba(229,57,53,0.08);
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.owner-name {
+    font-size: 1.08rem;
+    color: #222;
+    margin-bottom: 32px;
+    font-weight: bold;
+}
+
+.logout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.logout a {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
+    width: 60%;
+    text-align: center;
+}
+
+.logout a:hover { 
+    background: #b71c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+}
+
+.logout a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.menu li {
+    padding: 14px 32px;
+    color: #e53935;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px 0 0 6px;
+    margin-bottom: 0;
+    border-bottom: 1.5px solid #f3d6d6;
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+    background: #fff;
+}
+
+.menu li:last-child {
+    border-bottom: none;
+}
+
+.menu li:hover, .menu li.active {
+    background: #ffeaea;
+    color: #b71c1c;
+    box-shadow: 2px 2px 8px rgba(229,57,53,0.07);
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px 48px;
+    background: #fff;
+    overflow-y: auto;
+}
+
+.welcome-block {
+    display: block; /* Show welcome block by default */
+}
+
+.sample-data-block {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: none; /* Hide sample data blocks by default */
+}
+
+.sample-data-block h3 {
+    margin-top: 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* Show the first content block by default */
+.main-content .sample-data-block:first-of-type {
+    display: block;
+} 

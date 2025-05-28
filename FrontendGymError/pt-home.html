@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT - Trang chủ</title>
+    <title>Trang Chủ PT - GYM ERROR</title>
     <link rel="stylesheet" href="css/pt-home.css">
 </head>
 <body>
-    <h1>Hello pt</h1>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">GYM ERROR</div>
+            <p class="owner-name" id="user-info">PT: <span id="pt-name">Hồng Trung Việt</span></p>
+            <div class="logout">
+                 <a href="#" id="logout-link" class="btn-red">Đăng xuất</a>
+            </div>
+            <ul class="menu">
+                <li data-section="confirm-booking">Xác nhận đăng ký buổi tập</li>
+                <li data-section="schedule">Xem lịch làm việc</li>
+                <li data-section="view-exercises">Xem danh sách bài tập</li>
+                <li data-section="update-status">Cập nhật trạng thái</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="welcome-block">
+                <h1>Chào mừng PT đến với hệ thống quản lý phòng gym!</h1>
+                <p>Sử dụng thanh menu bên trái để truy cập các chức năng.</p>
+            </div>
+
+            <!-- Sample Data Block - Xác nhận đăng ký buổi tập -->
+            <div id="confirm-booking" class="sample-data-block">
+                <h3>Xác nhận đăng ký buổi tập</h3>
+                <p>Chưa có yêu cầu đăng ký buổi tập mới.</p>
+                <!-- Hoặc danh sách các yêu cầu cần xác nhận -->
+                <!-- <ul>
+                    <li>Hội viên C đăng ký buổi tập ngày DD/MM/YYYY, HH:MM</li>
+                    <li>Hội viên D đăng ký buổi tập ngày DD/MM/YYYY, HH:MM</li>
+                </ul> -->
+            </div>
+
+            <!-- Sample Data Block - Xem lịch làm việc -->
+            <div id="schedule" class="sample-data-block">
+                 <h3>Xem lịch làm việc</h3>
+                 <ul>
+                     <li>Buổi tập với Hội viên A - Ngày 10/06/2024, 10:00 AM</li>
+                     <li>Buổi tập với Hội viên E - Ngày 11/06/2024, 03:00 PM</li>
+                 </ul>
+                 <!-- Mở rộng: Xem cụ thể một buổi tập -->
+                 <p>Click vào buổi tập để xem chi tiết (chức năng chưa triển khai).</p>
+             </div>
+
+             <!-- Sample Data Block - Xem danh sách bài tập -->
+             <div id="view-exercises" class="sample-data-block">
+                 <h3>Xem danh sách bài tập</h3>
+                 <ul>
+                     <li>Bài tập Squat</li>
+                     <li>Bài tập Bench Press</li>
+                     <li>Bài tập Deadlift</li>
+                 </ul>
+                 <!-- Mở rộng: Thêm, Sửa, Xóa bài tập -->
+                 <p>Các chức năng Thêm, Sửa, Xóa bài tập chưa triển khai.</p>
+             </div>
+
+             <!-- Sample Data Block - Cập nhật trạng thái -->
+             <div id="update-status" class="sample-data-block">
+                 <h3>Cập nhật trạng thái</h3>
+                 <p>Chức năng cập nhật trạng thái buổi tập/hội viên chưa triển khai.</p>
+             </div>
+
+        </div>
+    </div>
     <script src="js/pt-home.js"></script>
 </body>
 </html>
